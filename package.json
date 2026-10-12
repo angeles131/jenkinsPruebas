@@ -1,0 +1,15 @@
+{
+  "name": "jenkins-demo-api",
+  "version": "1.0.0",
+  "description": "API simple para caso practico de Jenkins",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "supertest": "^6.3.0"
+  }
+}
