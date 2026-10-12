@@ -1,7 +1,7 @@
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-    res.statusCode = 200;
+    res.statusCode = 400;
     res.setHeader('Content-Type', 'text/plain');
     res.end('¡Hola desde mi API de Jenkins!\n');
 });
