@@ -1,22 +1,26 @@
 pipeline {
     agent any
-    tools { nodejs 'node20' } // Asegurate de tener configurada esta tool en Global Tool Configuration en Jenkins
+    tools { nodejs 'node20' }
+    
     stages {
-        stage('Install Dependencies') {
+        stage('Instalar Dependencias') {
             steps { sh 'npm install' }
         }
-        stage('Run Unit Tests') {
+        stage('Pruebas (CI)') {
             steps { sh 'npm test' }
         }
-        stage('Build Docker Image') {
+        stage('Empaquetado (CD)') {
             steps {
-                echo 'Simulando creacion de imagen Docker...'
-                // sh 'docker build -t mi-api-node:latest .'
+                // 1. Comprime los archivos vitales de la API en un .tar.gz (un zip)
+                sh 'tar czf mi-api-lista.tar.gz app.js package.json'
+                
+                // 2. Le dice a Jenkins que guarde ese archivo como un Artefacto descargable
+                archiveArtifacts artifacts: '*.tar.gz', fingerprint: true
             }
         }
     }
     post {
         always { echo 'Pipeline finalizado.' }
-        success { echo 'Despliegue exitoso (simulado).' }
+        success { echo 'El artefacto está listo para ser desplegado en el servidor.' }
     }
 }
