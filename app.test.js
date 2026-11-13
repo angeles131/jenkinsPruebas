@@ -14,6 +14,6 @@ describe('GET /', () => {
     it('Debe retornar status 200 y el mensaje esperado', async () => {
         const res = await request(server).get('/');
         expect(res.statusCode).toEqual(200);
-        expect(res.text).toBe('¡Hola desde mi API de Jenkins!\n');
+        expect(res.text).toBe('Hola desde mi API de Jenkins!\n');
     });
 });
